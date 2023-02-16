@@ -1,1 +1,1 @@
-<!-- Original project on GitHub -->
+Original project on GitHub
