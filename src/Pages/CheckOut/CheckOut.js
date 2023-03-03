@@ -24,16 +24,17 @@ const CheckOut = () => {
       message,
     };
 
-    fetch("http://localhost:5000/orders", {
+    fetch("https://genius-car-server-orpin-three.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("genius-token")}`,
       },
       body: JSON.stringify(order),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
           alert("Order place successfully");
           form.reset();
