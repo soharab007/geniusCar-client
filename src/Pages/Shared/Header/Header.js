@@ -4,7 +4,11 @@ import logo from "../../../assets/logo.svg";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
   const menuItems = (
     <>
       <li className="font-semibold">
@@ -15,14 +19,21 @@ const Header = () => {
           <li className="font-semibold">
             <Link to="/orders">Orders</Link>
           </li>
+          <li className="font-semibold">
+            {/* <Link to="/orders"></Link> */}
+            <button onClick={handleLogOut} className="btn-ghost">
+              Log Out
+            </button>
+          </li>
         </>
       ) : (
         <li className="font-semibold">
-          <Link to="/orders">Orders</Link>
+          <Link to="/login">Login</Link>
         </li>
       )}
     </>
   );
+
   return (
     <div className="navbar h-20 mb-12 pt-12 bg-base-100">
       <div className="navbar-start">
@@ -55,7 +66,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{menuItems}</ul>
+        <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
         <button className="btn btn-outline btn-warning">Appointment</button>
