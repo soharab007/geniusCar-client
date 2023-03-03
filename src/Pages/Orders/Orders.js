@@ -14,15 +14,14 @@ const Orders = () => {
     })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          logOut();
+          return logOut();
         }
         return res.json();
       })
       .then((data) => {
-        // console.log(data);
         setOrders(data);
       });
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   const handleDelete = (id) => {
     const proceed = window.confirm(
@@ -34,7 +33,7 @@ const Orders = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           if (data.deletedCount > 0) {
             alert("deleted successfully");
             const remaining = orders.filter((odr) => odr._id !== id);
