@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import image from "../../assets/images/login/login.svg";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import AuthToken from "../AuthToken/AuthToken";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -15,6 +16,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        AuthToken(user);
       })
 
       .catch((error) => console.error(error));
